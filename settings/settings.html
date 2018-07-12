@@ -1,0 +1,110 @@
+<div style="margin: 10px; width:990px">
+	<div class="navbar">
+		<a href="#!/home"><img src="imgs/header_logo_500.png" style="height:100px"/></a>
+		<div style="margin:5px;float: right !important">
+			<img ng-class="selectedCard.cardType"/>
+		</div>
+	</div>
+	<div  style="float: left; ;">
+		<ul class="menu">
+			<li><a href="#!/home">Credit Cards</a></li>
+			<li><a href="#!/activity">Activity</a></li>
+			<li><a href="#!/receipts">Disputes</a></li>
+			<li><a href="#!/settings">Settings</a></li>
+		</ul>
+	</div>
+	<!-- start of drop down menu -->
+	<div style="float:right !important">
+		<!-- Single button -->
+		<div class="btn-group" uib-dropdown is-open="status.isopen">
+			<button id="single-button1" type="button" class="btn btn-info" uib-dropdown-toggle>Choose Account<span class="caret"></span></button>
+			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+				<li role="menuitem"ng-click="setRole('GOLD')"><a href="#!/settings">Gold</a></li>
+				<li role="menuitem"ng-click="setRole('SILVER')"><a href="#!/settings">Silver</a></li>
+				<li role="menuitem" ng-click="setRole('STANDARD')"><a href="#!/settings">Standard</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- end of drop down menu -->
+	<div>
+		<div class="heroimage">
+			<img src="imgs/hero_image.jpg"/>
+		</div>
+		<!-- SETTINGS FORM -->
+		<h3>Credit Card Dispute - REST Server Settings:</h3>
+		<form class="form-horizontal" ng-submit="submitSettings()" role="form">
+			<div class="form-group">
+				<label for="baseURL" class="col-sm-3 control-label">Base URL</label>
+				<div class="col-sm-6">
+					<input type="text" id="baseURL" class="form-control" ng-model="settings.baseURL" />
+				</div>
+				<div class="col-sm-3"></div>
+	
+			</div>
+			<div class="form-group">
+				<label for="containerID" class="col-sm-3 control-label">Container ID</label>
+				<div class="col-sm-6">
+					<input type="text" id="containerID" class="form-control" ng-model="settings.containerID" />
+				</div>
+				<div class="col-sm-3"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="caseID" class="col-sm-3 control-label">Case ID</label>
+				<div class="col-sm-6">
+					<input type="text" id="caseID" class="form-control" ng-model="settings.caseID" />
+				</div>
+				<div class="col-sm-7"></div>
+			</div>
+			
+			<div class="form-group">
+				<label for="pamUID" class="col-sm-3 control-label">Admin ID</label>
+				<div class="col-sm-2">
+					<input type="text" id="pamUID" class="form-control" ng-model="settings.pamUID" />
+				</div>
+				<div class="col-sm-7"></div>
+			</div>
+			
+			<div class="form-group">
+					<label for="pamPWD" class="col-sm-3 control-label">Admin PWD</label>
+					<div class="col-sm-2">
+						<input type="text" id="pamPWD" class="form-control" ng-model="settings.pamPWD" />
+					</div>
+					<div class="col-sm-7"></div>
+			</div>
+<!-- 			
+			<div>
+				<div class="form-group">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-2">
+					<span><b>Training Location</b></span>
+					<div class="radio">
+						<label><input value="online" type="radio" name="training" ng-model="student.trainingType" />Online</label>
+					</div>
+					<div class="radio">
+						<label><input value="onsite" type="radio" name="training" ng-model="student.trainingType" />OnSite</label>
+					</div>
+				</div>
+				<div class="col-sm-7">
+					<span><b>Main Subjects</b></span>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="student.maths" />Maths</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox" ng-model="student.physics" />Physics</label>
+					</div>
+					<div class="checkbox">
+						<label><input type="checkbox"  ng-model="student.chemistry" />Chemistry</label>
+					</div>
+				</div>
+
+			</div>
+	 -->
+			<input type="button" value="Save" ng-click="" class="btn btn-primary col-sm-offset-3" /> 
+			<input type="button" value="Reset" ng-click="resetForm()" class="btn" /> <br/>
+			
+		</form>		
+		<!-- END SETTINGS FORM -->
+	</div>
+
+</div>

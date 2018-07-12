@@ -1,0 +1,84 @@
+<div style="margin: 10px; width:990px">
+	<div class="navbar">
+		<a href="#!/home"><img src="imgs/header_logo_500.png" style="height:100px"/></a>
+		<div style="margin:5px;float: right !important">
+			<img ng-class="selectedCard.cardType"/>
+		</div>
+	</div>
+	<div  style="float: left; ;">
+		<ul class="menu">
+			<li><a href="#!/home">Credit Cards</a></li>
+			<li><a href="#!/activity">Activity</a></li>
+			<li><a href="#!/receipts">Disputes</a></li>
+			<li><a href="#!/settings">Settings</a></li>
+		</ul>
+	</div>
+	<!-- start of drop down menu -->
+	<div style="float:right !important">
+		<!-- Single button -->
+		<div class="btn-group" uib-dropdown is-open="status.isopen">
+			<button id="single-button1" type="button" class="btn btn-info" uib-dropdown-toggle>Choose Account<span class="caret"></span></button>
+			<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+				<li role="menuitem"ng-click="setRole('GOLD')"><a href="#!/receipts">Gold</a></li>
+				<li role="menuitem"ng-click="setRole('SILVER')"><a href="#!/receipts">Silver</a></li>
+				<li role="menuitem" ng-click="setRole('STANDARD')"><a href="#!/receipts">Standard</a></li>
+			</ul>
+		</div>
+	</div>
+	<!-- end of drop down menu -->
+	<div>
+		<div class="heroimage">
+			<img src="imgs/hero_image.jpg"/>
+		</div>
+		<div id="FOO" style="height:60px;border: 1px solid #fff">
+			<span style="font-size: 30px">Items under review</span>
+			<div style="float:right;margin-top:10px;">
+				<button type="button" class="btn btn-info" ng-model="singleModel" btn-checkbox-false="0" ng-click="viewDetails()">Add Document</button>
+            </div>
+		</div>
+		<div uib-collapse="isCollapsed">
+			<div class="well well-lg">
+					<h4>Add a scanned document to your case file</h4>
+					<div class="panel panel-default">
+							<div class="panel-body">
+								<div style="float:left">
+									<form>
+											<input type="file" ng-file-select="onFileSelect($files)" >
+									 <!--  <input type="file" ng-file-select="onFileSelect($files)" multiple> -->
+									  
+									</form>
+								</div>
+								<div style="float:right">
+									<b>Preview:</b><br />
+									<i ng-hide="imageSrc">No image choosen</i>
+									<img style="height: 200px" ng-src="{{imageSrc}}" /><br/>
+									<!-- <b>Progress:</b>
+									<progress value="{{progress}}"></progress> -->
+								</div>
+							</div>
+						</div>
+						<button class="btn btn-primary">Upload Document</button>
+			</div>
+		</div>
+        <!-- BEGIN TABLE -->
+        <table width="100%">
+            <tr>
+                <!-- <th>Id</th> -->
+				<th>Case Type</th>
+				<th>Case Number</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th class="thr">Amount</th>
+            </tr>
+            <tr ng-repeat="item in disputedItems" ng-click="setSelectedRow($index)" ng-class="{'selected':$index == selectedRow}">
+				<!-- <td>{{$index}}</td> -->
+				<td><img style="height:30px" ng-src="{{renderCaseType(item)}}"></td>
+				<td>{{item.CaseNumber}}</td>
+                <td>{{item.Date}}</td>
+                <td>{{item.Description}}</td>
+                <td class="thr">{{item.Debit}}</td>
+            </tr>
+        </table>
+        <!-- END TABLE -->
+	</div>
+</div>
