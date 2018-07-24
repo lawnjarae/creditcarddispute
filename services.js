@@ -12,7 +12,7 @@ angular.module('myApp.services', [])
     // THESE DEFAULT VALUES ARE JUST IN CASE SOMEONE WHACKS THE WRONG STUFF
     const baseURL = 'http://localhost:8080/kie-server/services/rest/server/containers/';
     const containerID = 'credit-dispute-case_1.0.0';
-    const caseID = 'CreditCardDisputeCase.FraudDispute';
+    const caseID = 'CreditCardDisputeCase.ChargeDispute';
     const pamUID = 'pamAdmin';
     const pamPWD = 'redhatpam1!';
 
@@ -51,7 +51,7 @@ angular.module('myApp.services', [])
 .service ('roleService', function(){
     // THIS ARE THE STATUS TYPES
     var GOLD = {
-        "case-data" : { 
+        "case-data" : {
             "totalFraudAmount" : 100, //this gets swapped at runtime
             "customerStatus" : "GOLD",
             "customerAge" : 41,
@@ -59,15 +59,15 @@ angular.module('myApp.services', [])
         },
         "case-user-assignments" : {
             "owner" : "pamAdmin",
-            "fraud-manager" : ""
+            "dispute-manager" : ""
         },
         "case-group-assignments" : {
-            "fraud-manager" : "manager"
+            "dispute-manager" : "manager"
         }
     };
-        
+
     var SILVER = {
-        "case-data" : { 
+        "case-data" : {
             "totalFraudAmount" : 200,
             "customerStatus" : "SILVER",
             "customerAge" : 24,
@@ -75,15 +75,15 @@ angular.module('myApp.services', [])
         },
         "case-user-assignments" : {
             "owner" : "pamAdmin",
-            "fraud-manager" : ""
+            "dispute-manager" : ""
         },
         "case-group-assignments" : {
-            "fraud-manager" : "manager"
+            "dispute-manager" : "manager"
         }
     };
-        
+
     var STANDARD = {
-        "case-data" : { 
+        "case-data" : {
             "totalFraudAmount" : 300,
             "customerStatus" : "STANDARD",
             "customerAge" : 16,
@@ -91,15 +91,15 @@ angular.module('myApp.services', [])
         },
         "case-user-assignments" : {
             "owner" : "pamAdmin",
-            "fraud-manager" : ""
+            "dispute-manager" : ""
         },
         "case-group-assignments" : {
-            "fraud-manager" : "manager"
+            "dispute-manager" : "manager"
         }
-    };   
-    
-    var _currentRole = STANDARD;   
-    
+    };
+
+    var _currentRole = STANDARD;
+
     var setCurrentRole = function (role){
         switch (role){
             case 'GOLD'     : _currentRole = GOLD; break;
@@ -146,7 +146,7 @@ angular.module('myApp.services', [])
             "Description": "AUTO PAYMENT | ACCT ENDING XXXX-3003 | THANK YOU",
             "Debit": "",
             "Credit": 1504.98
-        },        
+        },
         {
             "id" : 1,
             "Status": "Cleared",
@@ -319,14 +319,14 @@ angular.module('myApp.services', [])
 
     var readAsDataURL = function (file, scope) {
         var deferred = $q.defer();
-         
-        var reader = getReader(deferred, scope);         
+
+        var reader = getReader(deferred, scope);
         reader.readAsDataURL(file);
-         
+
         return deferred.promise;
     };
 
     return {
-        readAsDataUrl: readAsDataURL  
-    };    
+        readAsDataUrl: readAsDataURL
+    };
 })

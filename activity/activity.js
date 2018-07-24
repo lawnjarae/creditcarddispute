@@ -19,7 +19,7 @@ angular.module('myApp.activity', ['ngRoute'])
     */
     var baseURL = 'http://localhost:8080/kie-server/services/rest/server/containers/';
     var containerID = 'credit-dispute-case_1.0.0';
-    var caseID = 'CreditCardDisputeCase.FraudDispute';
+    var caseID = 'CreditCardDisputeCase.ChargeDispute';
     var endURL = '/instances';
     var pamUID = 'pamAdmin';
     var pamPWD = 'redhatpam1!';
@@ -101,9 +101,9 @@ angular.module('myApp.activity', ['ngRoute'])
 
         // GET THE CURRENT ROLE AND ASSIGN THE SELECTED VALUE FROM THE TABLE
         var userData = roleService.getCurrentRole();
-        
+
         userData['case-data'].totalFraudAmount = $scope.activity[$scope.selectedRow].Debit;
-        userData['case-data'].CaseType = $scope.case_type;
+        userData['case-data'].caseType = $scope.case_type;
         console.log (JSON.stringify(userData, null, 2));
 
         // CALL THE KIE-SERVER AND POST THESE VALUES
@@ -124,7 +124,7 @@ angular.module('myApp.activity', ['ngRoute'])
                     return;
                 }
                 console.log (this.responseText);
-                bpmResponse = this.responseText 
+                bpmResponse = this.responseText
                 alert ('Your dispute resolution number is: ' + bpmResponse + '\nPlease check your email for any updates.')
                 $scope.activity[$scope.selectedRow].Status = 'Flagged';
                 $scope.activity[$scope.selectedRow].CaseNumber = bpmResponse;
@@ -133,5 +133,5 @@ angular.module('myApp.activity', ['ngRoute'])
             };
         xml.send(JSON.stringify(userData));
 
-    }    
+    }
 }]);
